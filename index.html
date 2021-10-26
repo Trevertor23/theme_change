@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <link rel="stylesheet" id="theme" href="./theme1.css">
+    </head>
+    <body>
+        <input type="radio" name="theme_r" value="light" onclick="getTheme()">
+        <input type="radio" name="theme_r" value="dark"  onclick="getTheme()">
+    </body>
+    <script>
+        let themeId = "light";
+        
+        window.onload = function getTheme() {
+            let radios = document.getElementsByName("theme_r");
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].value == localStorage.getItem("theme_id")) {
+                   radios[i].checked = true;
+                    
+                    break;
+                  }
+             }
+           
+            themeId = localStorage.getItem("theme_id");
+             console.log(themeId);
+            if (themeId == 'light'){
+                document.getElementById("theme").href = '/theme1.css';
+            }
+            else { document.getElementById("theme").href = '/theme2.css';}
+        } 
+        function getTheme() {
+            
+            if(localStorage.getItem("theme_id" !== '')) {  themeId = localStorage.getItem("theme_id", themeId); }
+           
+            let radios = document.getElementsByName("theme_r");
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    themeId = (radios[i].value);
+                    localStorage.setItem("theme_id", themeId);
+                    break;
+                  }
+             }
+             console.log(themeId);
+            if (themeId == 'light'){
+                document.getElementById("theme").href = '/theme1.css';
+            }
+            else { document.getElementById("theme").href = '/theme2.css';}
+        } 
+    </script>
+</html>
